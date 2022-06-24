@@ -1,0 +1,10 @@
+app:
+  localization:
+    select-language-message: "Выберите язык. | Select language."
+    selected-language-not-exist-message: "Выбранный язык не существует! | Selected language does not exist!"
+    languages:
+      - ру
+      - en
+    questions-resources:
+      ru: questions_ru.csv
+      en: questions_en.csv
