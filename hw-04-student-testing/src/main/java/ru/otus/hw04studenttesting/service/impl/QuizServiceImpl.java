@@ -50,6 +50,11 @@ public class QuizServiceImpl implements QuizService {
         quizExecution(questions);
     }
 
+    @Override
+    public boolean isUserLoggedIn() {
+        return user != null && !user.getName().isEmpty() && !user.getSurname().isEmpty();
+    }
+
     private void quizExecution(List<Question> questions) {
         int result = 0;
         for (Question question : questions) {

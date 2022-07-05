@@ -13,4 +13,6 @@ public interface QuizService {
     Integer getResult();
 
     void setResult(Integer result);
+
+    boolean isUserLoggedIn();
 }

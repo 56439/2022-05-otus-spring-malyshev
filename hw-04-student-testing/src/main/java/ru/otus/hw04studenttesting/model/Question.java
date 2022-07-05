@@ -2,11 +2,10 @@ package ru.otus.hw04studenttesting.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.otus.hw04studenttesting.model.interfaces.IQuestion;
 
 @Data
 @AllArgsConstructor
-public class Question implements IQuestion {
+public class Question {
 
     private int id;
     private String question;
