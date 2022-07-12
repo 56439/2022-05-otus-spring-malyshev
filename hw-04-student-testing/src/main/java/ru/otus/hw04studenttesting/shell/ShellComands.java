@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
 import ru.otus.hw04studenttesting.config.AppConfiguration;
 import ru.otus.hw04studenttesting.service.ConsoleService;
@@ -36,6 +37,7 @@ public class ShellComands {
     }
 
     @ShellMethod(value = "Авторизация (имя, фамилия).", key = {"login", "l"})
+    @ShellMethodAvailability("loginAvailability")
     public void login(
             @ShellOption("--name") String name,
             @ShellOption("--surname") String surname
@@ -44,30 +46,30 @@ public class ShellComands {
     }
 
     @ShellMethod(value = "Начать тест.", key = {"start", "s"})
+    @ShellMethodAvailability("quizAvailability")
     public void quiz() {
         quizService.quiz();
     }
 
     @ShellMethod(value = "Показать результат.", key = {"result", "r"})
+    @ShellMethodAvailability("showResultAvailability")
     public void showResult() {
         consoleService.showResult();
     }
 
     private Availability loginAvailability() {
-        if (localizationService.getSelectedLanguage() == null) {
-            return Availability.unavailable(LANGUAGE_NOT_SELECTED_MESSAGE);
-        }
-        return Availability.available();
+       return isLanguageSelected();
     }
 
     private Availability quizAvailability() {
-        return isUserLoggedIn();
+       return isQuizAvailable();
     }
 
     private Availability showResultAvailability() {
-        Availability quizAvailability = isUserLoggedIn();
+        Availability quizAvailability = isQuizAvailable();
         Integer result = quizService.getResult();
 
+        if (!quizAvailability.isAvailable()) return quizAvailability;
         if (result != null) return quizAvailability;
 
         String reason = quizAvailability.getReason();
@@ -82,5 +84,19 @@ public class ShellComands {
             return Availability.unavailable(localizationService.getBundledMessage("shell.please-login"));
         }
         return Availability.available();
+    }
+
+    private Availability isLanguageSelected() {
+        if (localizationService.getSelectedLanguage() == null) {
+            return Availability.unavailable(LANGUAGE_NOT_SELECTED_MESSAGE);
+        }
+        return Availability.available();
+    }
+
+    private Availability isQuizAvailable() {
+        if (!isLanguageSelected().isAvailable()) {
+            return isLanguageSelected();
+        }
+        return isUserLoggedIn();
     }
 }
