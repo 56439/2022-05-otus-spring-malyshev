@@ -1,0 +1,34 @@
+app:
+  localization:
+    select-language-message: "Выберите язык. | Select language."
+    selected-language-not-exist-message: "Выбранный язык не существует! | Selected language does not exist!"
+    languages:
+      - ру
+      - en
+    questions-resources:
+      ru: questions_ru.csv
+      en: questions_en.csv
+spring:
+  profiles:
+    active: shell
+  main:
+    allow-circular-references: true
+
+---
+spring:
+  profiles: console
+  shell.interactive.enabled: false
+
+---
+spring:
+  profiles: shell
+  shell:
+    interactive.enabled: true
+    command.stacktrace.enabled: false
+
+---
+spring:
+  profiles: test
+  shell.interactive.enabled: false
+  main:
+    banner-mode: off
