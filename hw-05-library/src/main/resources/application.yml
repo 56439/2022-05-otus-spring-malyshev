@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:book-library
+  sql:
+    init:
+      mode: always
+      data-locations: data.sql
+      schema-locations: schema.sql
+  h2:
+    console:
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  main:
+    allow-circular-references: true
+  profiles:
+    active: shell
+
+---
+spring:
+  profiles: shell
+  shell:
+    interactive.enabled: true
+    command.stacktrace.enabled: false
+
+---
+spring:
+  profiles: test
+  shell.interactive.enabled: false
+  main.banner-mode: off
