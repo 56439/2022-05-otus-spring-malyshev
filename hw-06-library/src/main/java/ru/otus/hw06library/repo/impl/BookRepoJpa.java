@@ -1,14 +1,14 @@
 package ru.otus.hw06library.repo.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.hw06library.model.Book;
 import ru.otus.hw06library.repo.BookRepo;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Repository
+@Component
 @SuppressWarnings("JpaQlInspection")
 @RequiredArgsConstructor
 public class BookRepoJpa implements BookRepo {
@@ -33,15 +33,9 @@ public class BookRepoJpa implements BookRepo {
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        String sqlDeleteComments = "delete from Comment c where c.book.id = :bookId";
-        Query deleteComments = em.createQuery(sqlDeleteComments).setParameter("bookId", id);
-        deleteComments.executeUpdate();
-
-        String sqlDeleteBook = "delete from Book b where b.id =:id";
-        Query deleteBook = em.createQuery(sqlDeleteBook).setParameter("id", id);
-
-        return deleteBook.executeUpdate() == 1;
+    public void deleteById(Long id) {
+        Book book = em.find(Book.class, id);
+        em.remove(book);
     }
 
     @Override
@@ -52,14 +46,7 @@ public class BookRepoJpa implements BookRepo {
 
     @Override
     public Book getById(Long id) {
-        String sql = "select b from Book b where b.id = :id";
-        TypedQuery<Book> query = em.createQuery(sql, Book.class)
-                .setParameter("id", id);
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        return em.find(Book.class, id);
     }
 
     @Override

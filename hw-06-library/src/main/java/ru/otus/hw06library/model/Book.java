@@ -31,7 +31,18 @@ public class Book {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id")
+    private List<Comment> comments;
+
     public Book(String title, Author author, Genre genre) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
+
+    public Book(Long id, String title, Author author, Genre genre) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;

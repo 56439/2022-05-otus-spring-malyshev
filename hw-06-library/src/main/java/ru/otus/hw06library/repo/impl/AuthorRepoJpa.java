@@ -2,17 +2,16 @@ package ru.otus.hw06library.repo.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.hw06library.model.Author;
 import ru.otus.hw06library.repo.AuthorRepo;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Repository
 @SuppressWarnings("JpaQlInspection")
 @RequiredArgsConstructor
-@Transactional
 public class AuthorRepoJpa implements AuthorRepo {
 
     @PersistenceContext
@@ -29,27 +28,14 @@ public class AuthorRepoJpa implements AuthorRepo {
     }
 
     @Override
-    public List<Author> getAll() {
-        String sql = "select a from Author a";
-        return em.createQuery(sql, Author.class).getResultList();
-    }
-
-    @Override
-    public Author getByName(String name) {
-        String sql = "select a from Author a where a.name = :name";
-        TypedQuery<Author> query = em.createQuery(sql, Author.class)
-                .setParameter("name", name);
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
     public Long count() {
         String sql = "select count(a) from Author a";
         Query query = em.createQuery(sql);
         return (Long) query.getSingleResult();
+    }
+
+    @Override
+    public Author getById(long id) {
+        return em.find(Author.class, id);
     }
 }

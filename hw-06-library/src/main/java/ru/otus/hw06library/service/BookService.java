@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface BookService {
 
-    Book create(String title, String authorName, String genreName);
+    Book save(String title, Long authorId, Long genreId);
 
-    Book save(Book book);
-
-    boolean deleteById(Long id);
+    void deleteById(Long id);
 
     List<Book> getAll();
 

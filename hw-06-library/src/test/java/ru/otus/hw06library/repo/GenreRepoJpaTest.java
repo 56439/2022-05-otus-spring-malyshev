@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.otus.hw06library.model.Genre;
 import ru.otus.hw06library.repo.impl.GenreRepoJpa;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.otus.hw06library.TestData.GENRE;
 import static ru.otus.hw06library.TestData.NEW_GENRE;
@@ -31,16 +29,9 @@ public class GenreRepoJpaTest {
     }
 
     @Test
-    @DisplayName(value = "достает из базы все жанры")
-    void getAll() {
-        List<Genre> genres = genreRepo.getAll();
-        assertEquals(genres.size(), genreRepo.count());
-    }
-
-    @Test
-    @DisplayName(value = "достает из базы жанр по названию")
+    @DisplayName(value = "достает из базы жанр по ID")
     void getByName() {
-        Genre genre = genreRepo.getByName(GENRE.getName());
+        Genre genre = genreRepo.getById(GENRE.getId());
         assertEquals(genre.getId(), GENRE.getId());
     }
 }

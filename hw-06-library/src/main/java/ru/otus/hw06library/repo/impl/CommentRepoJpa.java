@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 import ru.otus.hw06library.model.Comment;
 import ru.otus.hw06library.repo.CommentRepo;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Repository
 @SuppressWarnings("JpaQlInspection")
@@ -27,36 +28,14 @@ public class CommentRepoJpa implements CommentRepo {
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        String sql = "delete from Comment c where c.id = :id";
-        Query query = em.createQuery(sql).setParameter("id", id);
-        return query.executeUpdate() == 1;
-    }
-
-    @Override
-    public List<Comment> getAllByBookId(Long bookId) {
-        String sql = "select c from Comment c where c.book.id = :bookId";
-        TypedQuery<Comment> query = em.createQuery(sql, Comment.class)
-                .setParameter("bookId", bookId);
-        List<Comment> comments = query.getResultList();
-
-        if (comments.isEmpty()) {
-            return null;
-        }
-
-        return comments;
+    public void deleteById(Long id) {
+        Comment comment = em.find(Comment.class, id);
+        em.remove(comment);
     }
 
     @Override
     public Comment getById(Long id) {
-        String sql = "select c from Comment c where c.id = :id";
-        TypedQuery<Comment> query = em.createQuery(sql, Comment.class)
-                .setParameter("id", id);
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        return em.find(Comment.class, id);
     }
 
     @Override

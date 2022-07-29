@@ -8,7 +8,7 @@ public interface BookRepo {
 
     Book saveOrUpdate(Book book);
 
-    boolean deleteById(Long id);
+    void deleteById(Long id);
 
     List<Book> getAll();
 

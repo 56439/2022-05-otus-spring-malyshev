@@ -23,18 +23,9 @@ public class BookRepoJpaTest {
 
     @Test
     @DisplayName(value = "добавляет книгу в базу")
-    void insert() {
+    void saveOrUpdate() {
         Long expected = bookRepo.count() + 1;
         bookRepo.saveOrUpdate(NEW_BOOK);
-
-        assertEquals(expected, bookRepo.count());
-    }
-
-    @Test
-    @DisplayName(value = "удаляет книгу по ID")
-    void deleteById() {
-        Long expected = bookRepo.count() - 1;
-        bookRepo.deleteById(1L);
 
         assertEquals(expected, bookRepo.count());
     }
@@ -53,7 +44,7 @@ public class BookRepoJpaTest {
         Long id = 1L;
         Book book = bookRepo.getById(id);
 
-        assertEquals(BOOK, book);
+        assertEquals(BOOK.getId(), book.getId());
     }
 
     @Test
@@ -62,7 +53,7 @@ public class BookRepoJpaTest {
         String title = "book";
         Book book = bookRepo.getByTitle(title);
 
-        assertEquals(BOOK, book);
+        assertEquals(BOOK.getId(), book.getId());
     }
 
     @Test

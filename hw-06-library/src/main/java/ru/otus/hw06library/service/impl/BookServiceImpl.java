@@ -1,6 +1,7 @@
 package ru.otus.hw06library.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.hw06library.model.Author;
@@ -15,70 +16,59 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookServiceImpl implements BookService {
 
     private final BookRepo bookRepo;
-    private final AuthorRepo authorService;
-    private final GenreRepo genreService;
-
-    @Override
-    public Book create(String title, String authorName, String genreName) {
-        Book book = bookRepo.getByTitle(title);
-        if (book != null) {
-            return null;
-        }
-
-        Author author = authorService.getByName(authorName);
-        if (author == null) {
-            author = new Author(authorName);
-        }
-
-        Genre genre = genreService.getByName(genreName);
-        if (genre == null) {
-            genre = new Genre(genreName);
-        }
-
-        return new Book(title, author, genre);
-    }
+    private final AuthorRepo authorRepo;
+    private final GenreRepo genreRepo;
 
     @Override
     @Transactional
-    public Book save(Book book) {
+    public Book save(String title, Long authorId, Long genreId) {
+        Author author = authorRepo.getById(authorId);
+        if (author == null) {
+            log.error("Автор не существует!");
+            return null;
+        }
+        Genre genre = genreRepo.getById(genreId);
+        if (genre == null) {
+            log.error("Жанр не существует!");
+            return null;
+        }
+
+        Book book = new Book(title, author, genre);
+
         return bookRepo.saveOrUpdate(book);
     }
 
     @Override
     @Transactional
-    public boolean deleteById(Long id) {
-        return bookRepo.deleteById(id);
+    public void deleteById(Long id) {
+        bookRepo.deleteById(id);
     }
 
     @Override
-    @Transactional
     public List<Book> getAll() {
         return bookRepo.getAll();
     }
 
     @Override
-    @Transactional
     public Book getById(Long id) {
         return bookRepo.getById(id);
     }
 
     @Override
-    @Transactional
     public Book getByTitle(String title) {
         return bookRepo.getByTitle(title);
     }
 
     @Override
-    @Transactional
     public List<Book> getByAuthor(String authorName) {
         return bookRepo.getByAuthor(authorName);
     }
 
     @Override
-    @Transactional
     public List<Book> getByGenre(String genreName) {
         return bookRepo.getByGenre(genreName);
     }

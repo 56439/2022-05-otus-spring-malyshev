@@ -8,10 +8,7 @@ import org.springframework.context.annotation.Import;
 import ru.otus.hw06library.model.Comment;
 import ru.otus.hw06library.repo.impl.CommentRepoJpa;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.otus.hw06library.TestData.BOOK;
 import static ru.otus.hw06library.TestData.NEW_COMMENT;
 
 @DataJpaTest
@@ -37,15 +34,6 @@ public class CommentRepoJpaTest {
         commentRepo.deleteById(1L);
 
         assertEquals(expected, commentRepo.count());
-    }
-
-    @Test
-    @DisplayName(value = "достает все комментарии к книге по ее ID")
-    void getAllByBookId() {
-        Integer expected = 2;
-        List<Comment> comments = commentRepo.getAllByBookId(BOOK.getId());
-
-        assertEquals(expected, comments.size());
     }
 
     @Test

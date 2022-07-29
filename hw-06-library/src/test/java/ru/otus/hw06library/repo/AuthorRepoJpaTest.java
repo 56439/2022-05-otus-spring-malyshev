@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.otus.hw06library.model.Author;
 import ru.otus.hw06library.repo.impl.AuthorRepoJpa;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.otus.hw06library.TestData.AUTHOR;
 import static ru.otus.hw06library.TestData.NEW_AUTHOR;
@@ -31,16 +29,9 @@ public class AuthorRepoJpaTest {
     }
 
     @Test
-    @DisplayName(value = "достает из базы всех авторов")
-    void getAll() {
-        List<Author> authors = authorRepo.getAll();
-        assertEquals(authors.size(), authorRepo.count());
-    }
-
-    @Test
-    @DisplayName(value = "достает из базы автора по имени")
+    @DisplayName(value = "достает из базы автора по ID")
     void getByName() {
-        Author author = authorRepo.getByName(AUTHOR.getName());
+        Author author = authorRepo.getById(AUTHOR.getId());
         assertEquals(author.getId(), AUTHOR.getId());
     }
 }

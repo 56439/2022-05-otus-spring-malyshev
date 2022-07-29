@@ -8,7 +8,7 @@ public interface CommentService {
 
     Comment save(Comment comment);
 
-    boolean deleteById(Long id);
+    void deleteById(Long id);
 
-    List<Comment> getAllByBookId(Long id);
+    List<Comment> getAllByBookId(Long bookId);
 }
