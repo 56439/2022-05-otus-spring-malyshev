@@ -7,6 +7,7 @@ import ru.otus.hw06library.repo.BookRepo;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 @Component
 @SuppressWarnings("JpaQlInspection")
@@ -46,7 +47,10 @@ public class BookRepoJpa implements BookRepo {
 
     @Override
     public Book getById(Long id) {
-        return em.find(Book.class, id);
+        EntityGraph graph = em.getEntityGraph("book-comments-entity-graph");
+        Map<String, Object> properties = Map.of("javax.persistence.fetchgraph", graph);
+
+        return em.find(Book.class, id, properties);
     }
 
     @Override

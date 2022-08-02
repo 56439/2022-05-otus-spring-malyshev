@@ -17,5 +17,5 @@ public class TestData {
     public static final Author NEW_AUTHOR = new Author("new author");
     public static final Genre NEW_GENRE = new Genre("new genre");
     public static final Book NEW_BOOK = new Book("new book", AUTHOR, GENRE);
-    public static final Comment NEW_COMMENT = new Comment("new comment 1", 1L);
+    public static final Comment NEW_COMMENT = new Comment("new comment 1", BOOK);
 }

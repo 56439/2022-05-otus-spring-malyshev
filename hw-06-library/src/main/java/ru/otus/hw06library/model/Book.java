@@ -13,6 +13,21 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+            name = "book-only-entity-graph",
+            attributeNodes = {
+                    @NamedAttributeNode("author"),
+                    @NamedAttributeNode("genre")
+            }),
+        @NamedEntityGraph(
+            name = "book-comments-entity-graph",
+            attributeNodes = {
+                    @NamedAttributeNode("author"),
+                    @NamedAttributeNode("genre"),
+                    @NamedAttributeNode("comments")
+            })
+})
 @Table(name = "books")
 public class Book {
 
@@ -31,8 +46,9 @@ public class Book {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
+    @ToString.Exclude
     private List<Comment> comments;
 
     public Book(String title, Author author, Genre genre) {

@@ -1,7 +1,7 @@
 package ru.otus.hw06library.repo.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.hw06library.model.Genre;
 import ru.otus.hw06library.repo.GenreRepo;
 
@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-@Repository
+@Component
 @SuppressWarnings("JpaQlInspection")
 @RequiredArgsConstructor
 public class GenreRepoJpa implements GenreRepo {

@@ -67,7 +67,8 @@ public class ShellCommands {
 
     @ShellMethod(value = "Добавить комментарий к книге", key = {"a-c", "add-comment"})
     public void addComment(String entry, Long bookId) {
-        Comment comment = new Comment(entry, bookId);
+        Book book = bookService.getById(bookId);
+        Comment comment = new Comment(entry, book);
 
         commentService.save(comment);
         ioService.print(String.format("Комментарий '%s' добавлен к книге '%s'", entry, bookId));

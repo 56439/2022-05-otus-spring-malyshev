@@ -20,11 +20,12 @@ public class Comment {
     @Column(name = "entry", nullable = false)
     private String entry;
 
-    @Column(name = "book_id")
-    private Long bookId;
+    @OneToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
-    public Comment(String entry, Long bookId) {
+    public Comment(String entry, Book book) {
         this.entry = entry;
-        this.bookId = bookId;
+        this.book = book;
     }
 }
