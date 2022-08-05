@@ -44,6 +44,11 @@ public class ShellCommands {
         ioService.print(bookService.getById(id).toString());
     }
 
+    @ShellMethod(value = "Получить книгу с комментариями по ID", key = {"b-c", "book-comments"})
+    public void getBookByIdWithComments(Long id) {
+        ioService.print(bookService.getByIdWithComments(id).toString());
+    }
+
     @ShellMethod(value = "Получить книгу по названию", key = {"b-n", "book-by-name"})
     public void getBookByName(String title) {
         ioService.print(bookService.getByTitle(title).toString());

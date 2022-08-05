@@ -19,6 +19,8 @@ import java.util.List;
 @Slf4j
 public class BookServiceImpl implements BookService {
 
+    private static final String BOOK_COMMENTS_ENTITY_GRAPH = "book-comments-entity-graph";
+
     private final BookRepo bookRepo;
     private final AuthorRepo authorRepo;
     private final GenreRepo genreRepo;
@@ -56,6 +58,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book getById(Long id) {
         return bookRepo.getById(id);
+    }
+
+    @Override
+    public Book getByIdWithComments(Long id) {
+        return bookRepo.getById(id, BOOK_COMMENTS_ENTITY_GRAPH);
     }
 
     @Override

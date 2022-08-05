@@ -14,6 +14,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BookRepoJpa implements BookRepo {
 
+    private static final String JAVAX_PERSISTENCE_FETCHGRAPH = "javax.persistence.fetchgraph";
+
     @PersistenceContext
     private final EntityManager em;
 
@@ -46,11 +48,16 @@ public class BookRepoJpa implements BookRepo {
     }
 
     @Override
-    public Book getById(Long id) {
-        EntityGraph graph = em.getEntityGraph("book-comments-entity-graph");
-        Map<String, Object> properties = Map.of("javax.persistence.fetchgraph", graph);
+    public Book getById(Long id, String entityGraph) {
+        EntityGraph graph = em.getEntityGraph(entityGraph);
+        Map<String, Object> properties = Map.of(JAVAX_PERSISTENCE_FETCHGRAPH, graph);
 
         return em.find(Book.class, id, properties);
+    }
+
+    @Override
+    public Book getById(Long id) {
+        return em.find(Book.class, id);
     }
 
     @Override

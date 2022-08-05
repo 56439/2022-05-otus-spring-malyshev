@@ -14,6 +14,8 @@ public interface BookService {
 
     Book getById(Long id);
 
+    Book getByIdWithComments(Long id);
+
     Book getByTitle(String title);
 
     List<Book> getByAuthor(String authorName);
