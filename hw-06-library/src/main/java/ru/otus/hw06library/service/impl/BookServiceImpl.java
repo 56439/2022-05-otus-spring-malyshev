@@ -2,10 +2,12 @@ package ru.otus.hw06library.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.hw06library.model.Author;
 import ru.otus.hw06library.model.Book;
+import ru.otus.hw06library.model.Comment;
 import ru.otus.hw06library.model.Genre;
 import ru.otus.hw06library.repo.AuthorRepo;
 import ru.otus.hw06library.repo.BookRepo;
@@ -18,8 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class BookServiceImpl implements BookService {
-
-    private static final String BOOK_COMMENTS_ENTITY_GRAPH = "book-comments-entity-graph";
 
     private final BookRepo bookRepo;
     private final AuthorRepo authorRepo;
@@ -61,8 +61,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Book getByIdWithComments(Long id) {
-        return bookRepo.getById(id, BOOK_COMMENTS_ENTITY_GRAPH);
+        Book book = bookRepo.getById(id);
+        if (book != null) {
+            List<Comment> comments = book.getComments();
+            Hibernate.initialize(comments);
+            book.setComments(comments);
+        }
+        return book;
     }
 
     @Override

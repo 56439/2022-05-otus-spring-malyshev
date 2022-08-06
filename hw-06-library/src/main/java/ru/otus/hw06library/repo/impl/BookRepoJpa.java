@@ -7,14 +7,11 @@ import ru.otus.hw06library.repo.BookRepo;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 
 @Component
 @SuppressWarnings("JpaQlInspection")
 @RequiredArgsConstructor
 public class BookRepoJpa implements BookRepo {
-
-    private static final String JAVAX_PERSISTENCE_FETCHGRAPH = "javax.persistence.fetchgraph";
 
     @PersistenceContext
     private final EntityManager em;
@@ -45,14 +42,6 @@ public class BookRepoJpa implements BookRepo {
     public List<Book> getAll() {
         String sql = "select b from Book b";
         return em.createQuery(sql, Book.class).getResultList();
-    }
-
-    @Override
-    public Book getById(Long id, String entityGraph) {
-        EntityGraph graph = em.getEntityGraph(entityGraph);
-        Map<String, Object> properties = Map.of(JAVAX_PERSISTENCE_FETCHGRAPH, graph);
-
-        return em.find(Book.class, id, properties);
     }
 
     @Override

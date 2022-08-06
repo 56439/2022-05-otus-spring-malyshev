@@ -13,21 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@NamedEntityGraphs({
-        @NamedEntityGraph(
-            name = "book-only-entity-graph",
-            attributeNodes = {
-                    @NamedAttributeNode("author"),
-                    @NamedAttributeNode("genre")
-            }),
-        @NamedEntityGraph(
-            name = "book-comments-entity-graph",
-            attributeNodes = {
-                    @NamedAttributeNode("author"),
-                    @NamedAttributeNode("genre"),
-                    @NamedAttributeNode("comments")
-            })
-})
 @Table(name = "books")
 public class Book {
 

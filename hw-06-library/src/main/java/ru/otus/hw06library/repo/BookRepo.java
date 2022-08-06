@@ -12,8 +12,6 @@ public interface BookRepo {
 
     List<Book> getAll();
 
-    Book getById(Long id, String entityGraph);
-
     Book getById(Long id);
 
     Book getByTitle(String title);
