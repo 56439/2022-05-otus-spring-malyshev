@@ -45,12 +45,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Book getById(Long id) {
         return bookRepo.findById(id).orElseThrow();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Book getByIdWithComments(Long id) {
         Book book = bookRepo.findById(id).orElseThrow();
         List<Comment> comments = book.getComments();
