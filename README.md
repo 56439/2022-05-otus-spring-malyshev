@@ -7,3 +7,6 @@
 ### [ДЗ 03 (занятие 04) "Чёрная магия" Spring Boot](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-03-student-testing)
 ### [ДЗ 04 (занятие 07) Продвинутая конфигурация (часть 2) - Conditionals, Events, тестирование](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-04-student-testing)
 ### [ДЗ 05 (занятие 09) DAO на Spring JDBC ](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-05-library)
+### [ДЗ 06 (занятие 11) JPQL, Spring ORM, DAO на основе Spring ORM + JPA](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-06-library)
+### [ДЗ 07 (занятие 13) "Белая магия" Spring Data: Spring Data JPA](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-07-library)
+### [ДЗ 08 (занятие 15) Spring Data для подключения к нереляционным БД](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-08-library)
