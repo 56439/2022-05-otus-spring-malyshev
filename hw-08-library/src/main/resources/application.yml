@@ -1,0 +1,28 @@
+spring:
+  mongodb:
+    embedded:
+      version: 4.4.11
+  data:
+    mongodb:
+      database: book-library
+  main:
+    allow-circular-references: true
+  profiles:
+    active: shell
+
+mongock:
+  change-logs-scan-package:
+    - ru.otus.hw08library.mongock.changelog
+
+---
+spring:
+  profiles: shell
+  shell:
+    interactive.enabled: true
+    command.stacktrace.enabled: false
+
+---
+spring:
+  profiles: test
+  shell.interactive.enabled: false
+  main.banner-mode: off
