@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Комментарии</title>
+</head>
+<nav>
+	<a th:href="@{/}" href="books.html">Книги</a>
+</nav>
+<body>
+	<h3>Комментарии к книге</h3>
+	<div>
+		<a th:href="@{/comments/addComment(bookId=${bookId})}" href="addComment.html">Добавить</a>
+	</div>
+	<table>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Comment</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="comment : ${comments}">
+			<td th:text="${comment.id}"></td>
+			<td th:text="${comment.entry}"></td>
+			<td>
+				<form th:action="@{/comments/delete(id=${comment.id})}" th:method="post">
+					<button type="submit">Удалить</button>
+				</form>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Список книг</title>
+</head>
+<nav>
+	<a th:href="@{/}" href="books.html">Книги</a>
+</nav>
+<body>
+	<h3>Книги</h3>
+	<div>
+		<a th:href="@{/addBook}" href="addBook.html">Добавить</a>
+	</div>
+	<table>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Genre</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="book : ${books}">
+			<td th:text="${book.id}"></td>
+			<td th:text="${book.title}"></td>
+			<td th:text="${book.author.name}"></td>
+			<td th:text="${book.genre.name}"></td>
+			<td>
+				<a th:href="@{/comments(id=${book.id})}" href="comments.html">Комментарии</a>
+			</td>
+			<td>
+				<a th:href="@{/editBook(id=${book.id})}" href="editBook.html">Изменить</a>
+			</td>
+			<td>
+				<form th:action="@{/delete(id=${book.id})}" th:method="post">
+					<button type="submit">Удалить</button>
+				</form>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>
