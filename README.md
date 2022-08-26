@@ -10,3 +10,4 @@
 ### [ДЗ 06 (занятие 11) JPQL, Spring ORM, DAO на основе Spring ORM + JPA](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-06-library)
 ### [ДЗ 07 (занятие 13) "Белая магия" Spring Data: Spring Data JPA](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-07-library)
 ### [ДЗ 08 (занятие 15) Spring Data для подключения к нереляционным БД](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-08-library)
+### [ДЗ 09 (занятие 18) Spring MVC View](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-09-library)
