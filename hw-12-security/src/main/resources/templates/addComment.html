@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление комментария</title>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form th:action="@{'/comments/' + ${bookId}}">
+        <h3>Добавление комментария</h3>
+        <div>
+            <label for="entry">Комментарий:</label>
+            <input id="entry" name="entry" type="text" placeholder="Введите комментарий" required />
+        </div>
+        <div>
+            <button onclick="addComment()" id="btn" type="submit">Сохранить</button>
+            <a th:href="@{'/comments/' + ${bookId}}"><button type="button">Отмена</button></a>
+        </div>
+    </form>
+    <script>
+        function addComment() {
+            var search = {};
+            search["entry"] = $("#entry").val();
+
+            var bookId = getBookIdFromUrl();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/api/comment/add/" + bookId,
+                data: JSON.stringify(search),
+                dataType: 'json'
+            });
+        }
+
+        function getBookIdFromUrl() {
+            return location.pathname.replace("/addComment/", '');
+        }
+    </script>
+</body>
+</html>
