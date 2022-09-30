@@ -11,5 +11,5 @@
 ### [ДЗ 07 (занятие 13) "Белая магия" Spring Data: Spring Data JPA](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-07-library)
 ### [ДЗ 08 (занятие 15) Spring Data для подключения к нереляционным БД](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-08-library)
 ### [ДЗ 09 (занятие 18) Spring MVC View](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-09-library)
-### [ДЗ 10 (занятие 19) Spring MVC View](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-10-mvc)
-### [ДЗ 12 (занятие 25) Spring MVC View](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-12-security)
+### [ДЗ 10 (занятие 19) Современные приложения на Spring MVC](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-10-mvc)
+### [ДЗ 12 (занятие 25) Spring Security: Механизмы аутентификации](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-12-security)
