@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Добавление книги</title>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<form action="/">
+		<h3>Добавление книги</h3>
+		<div>
+			<label for="title">Название:</label>
+			<input id="title" name="title" type="text" placeholder="Введите название" required />
+		</div>
+		<div>
+			<label for="author">Автор:</label>
+			<select id="author" name="author">
+
+			</select>
+		</div>
+		<div>
+			<label for="genre">Жанр:</label>
+			<select id="genre" name="genre">
+
+			</select>
+		</div>
+		<div>
+			<button onclick="addBook()" type="submit">Сохранить</button>
+			<a href="/"><button type="button">Отмена</button></a>
+		</div>
+	</form>
+	<script>
+		function addBook() {
+			var search = {};
+			search["title"] = $("#title").val();
+			search["author"] = $("#author").val();
+			search["genre"] = $("#genre").val();
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/api/book/add",
+				data: JSON.stringify(search),
+				dataType: 'json'
+			});
+		}
+
+		$(function getAuthors () {
+			$.get('/api/authors').done(function (authors) {
+				authors.forEach(function (author) {
+					$('#author').append(`
+                    	<option value="${author.id}">${author.name}</option>
+                	`)
+				});
+			})
+		});
+
+		$(function getGenres () {
+			$.get('/api/genres').done(function (genres) {
+				genres.forEach(function (genre) {
+					$('#genre').append(`
+                    	<option value="${genre.id}">${genre.name}</option>
+                	`)
+				});
+			})
+		});
+	</script>
+</body>
+</html>
