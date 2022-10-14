@@ -13,3 +13,4 @@
 ### [ДЗ 09 (занятие 18) Spring MVC View](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-09-library)
 ### [ДЗ 10 (занятие 19) Современные приложения на Spring MVC](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-10-mvc)
 ### [ДЗ 12 (занятие 25) Spring Security: Механизмы аутентификации](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-12-security)
+### [ДЗ 13 (занятие 27) Spring Security: ACL](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-13-acl)
