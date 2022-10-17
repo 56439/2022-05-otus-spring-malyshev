@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:book-library-h2
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+
+  mongodb:
+    embedded:
+      version: 4.4.11
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: book-library-mongo
+      username: user
+      password: pass
+      authentication-database: admin
+
+  jpa:
+    generate-ddl: false
+    show-sql: false
+
+  main:
+    allow-circular-references: true
