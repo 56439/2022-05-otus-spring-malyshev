@@ -15,3 +15,4 @@
 ### [ДЗ 12 (занятие 25) Spring Security: Механизмы аутентификации](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-12-security)
 ### [ДЗ 13 (занятие 27) Spring Security: ACL](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-13-acl)
 ### [ДЗ 14 (занятие 28) Spring Batch](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-14-batch)
+### [ДЗ 17 (занятие 34) Docker, оркестрация, облака, облачные хостинги](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-17-docker)
