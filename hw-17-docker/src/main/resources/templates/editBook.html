@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Редактирование книги</title>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<form action="/">
+		<h3>Информация о книге</h3>
+		<div>
+			<label for="id">ID:</label>
+			<input id="id" type="text" readonly="readonly" />
+		</div>
+		<div>
+			<label for="title">Title:</label>
+			<input id="title" name="title" type="text" />
+		</div>
+		<div>
+			<label for="author">Author:</label>
+			<select id="author" name="author">
+			</select>
+		</div>
+		<div>
+			<label for="genre">Genre:</label>
+			<select id="genre" name="genre">
+			</select>
+		</div>
+		<div>
+			<button onclick="saveBook()" type="submit">Сохранить</button>
+			<a href="/"><button type="button">Отмена</button></a>
+		</div>
+	</form>
+	<script>
+		$(function () {
+			var bookId = getBookIdFromUrl();
+			$.get('/api/book/' + bookId).done(function (book) {
+				$('#id').val(`${book.id}`);
+				$('#title').val(`${book.title}`);
+				getAuthors(book);
+				getGenres(book);
+			});
+		});
+
+		function getAuthors (book) {
+			$.get('/api/authors').done(function (authors) {
+				authors.forEach(function (author) {
+					let isSelected = author.id === book.author.id ? "selected" : "";
+					$('#author').append(`
+                    	<option ${isSelected} value="${author.id}">${author.name}</option>
+                	`)
+				});
+			})
+		}
+
+		function getGenres (book) {
+			$.get('/api/genres').done(function (genres) {
+				genres.forEach(function (genre) {
+					let isSelected = genre.id === book.genre.id ? "selected" : "";
+					$('#genre').append(`
+                    	<option ${isSelected} value="${genre.id}">${genre.name}</option>
+                	`)
+				});
+			})
+		}
+
+		function getBookIdFromUrl() {
+			return location.pathname.replace("/editBook/", '');
+		}
+
+		function saveBook() {
+			var search = {};
+			search["id"] = $("#id").val();
+			search["title"] = $("#title").val();
+			search["author"] = $("#author").val();
+			search["genre"] = $("#genre").val();
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/api/book/update",
+				data: JSON.stringify(search),
+				dataType: 'json'
+			});
+		}
+	</script>
+</body>
+</html>
