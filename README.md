@@ -17,3 +17,4 @@
 ### [ДЗ 14 (занятие 28) Spring Batch](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-14-batch)
 ### [ДЗ 16 (занятие 32) Монолиты vs. Microservices (Round 2), Spring Boot Actuator - must have в микросервисах](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-16-health)
 ### [ДЗ 17 (занятие 34) Docker, оркестрация, облака, облачные хостинги](https://github.com/56439/2022-05-otus-spring-malyshev/tree/master/hw-17-docker)
+### [Проектная работа: Telegram бот для заказа кофе](https://github.com/56439/CoffeeBot)
